@@ -1,0 +1,122 @@
+{
+  "data": [
+    {
+      "id": "71f7",
+      "name": "Sathyanarayana",
+      "pnumber": "9966843353",
+      "age": "75"
+    },
+    {
+      "id": "6c11",
+      "name": "fhnhg",
+      "pnumber": "1234567893",
+      "age": "25"
+    },
+    {
+      "id": "c4d6",
+      "name": "Ushasri",
+      "pnumber": "9701976383",
+      "age": "32"
+    }
+  ],
+  "employeelist": [
+    {
+      "id": "261a",
+      "empfname": "Rajesh",
+      "emplname": "Pandilla",
+      "empid": "20210265",
+      "empemail": "raj@gmail.com"
+    },
+    {
+      "id": "7677",
+      "empfname": "Rajesh",
+      "emplname": "pandilla",
+      "empid": "20210265",
+      "empemail": "rajesh@gmail.com"
+    },
+    {
+      "id": "cd01",
+      "empfname": "Rajesh",
+      "emplname": "Pandilla",
+      "empid": "20210265",
+      "empemail": "raj@gmail.com"
+    },
+    {
+      "id": "261a",
+      "empfname": "Rajesh Raj Pandilla",
+      "emplname": "Pandilla",
+      "empid": "20210265",
+      "empemail": "raj@gmail.com"
+    },
+    {
+      "id": "f1d7",
+      "empfname": "Rajesh",
+      "emplname": "Pandilla",
+      "empid": "20210265",
+      "empemail": "raj@gmail.com"
+    },
+    {
+      "id": "230c",
+      "empfname": "Rajesh",
+      "emplname": "Pandilla",
+      "empid": "20210265",
+      "empemail": "raj@gmail.com"
+    },
+    {
+      "id": "35bb",
+      "empfname": "Rajesh",
+      "emplname": "Pandilla",
+      "empid": "20210265",
+      "empemail": "raj@gmail.com"
+    },
+    {
+      "id": "d39a",
+      "empfname": "Rajesh",
+      "emplname": "Pandilla",
+      "empid": "20210265",
+      "empemail": "raj@gmail.com"
+    },
+    {
+      "id": "8aa1",
+      "empfname": "Rajesh",
+      "emplname": "Pandilla",
+      "empid": "20210265",
+      "empemail": "raj@gmail.com"
+    },
+    {
+      "id": "09e1",
+      "empfname": "Rajesh",
+      "emplname": "Pandilla",
+      "empid": "20210265",
+      "empemail": "raj@gmail.com"
+    },
+    {
+      "id": "3548",
+      "empfname": "Rajesh",
+      "emplname": "Pandilla",
+      "empid": "20210265",
+      "empemail": "raj@gmail.com"
+    },
+    {
+      "id": "5486",
+      "empfname": "Rajesh",
+      "emplname": "Pandilla",
+      "empid": "20210265",
+      "empemail": "raj@gmail.com"
+    },
+    {
+      "id": "581d",
+      "empfname": "Rajesh",
+      "emplname": "Pandilla",
+      "empid": "20210265",
+      "empemail": "raj@gmail.com"
+    },
+    {
+      "id": "fca5",
+      "empfname": "Rajesh",
+      "emplname": "Pandilla",
+      "empid": "20210265",
+      "empemail": "raj@gmail.com"
+    }
+  ]
+}

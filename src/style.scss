@@ -1,0 +1,15 @@
+@import'bootstrap/dist/css/bootstrap.min.css';
+@import'bootstrap-icons/font/bootstrap-icons.min.css';
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+::selection {
+    background: #ff0000;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+body {
+    background: #ff0000;
+}

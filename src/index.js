@@ -1,13 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './App.scss'
+import './style.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+const initialStore = {
+  score: 0
+}
+const reducer = (currentStore = initialStore, action) => {
+  console.log(action);
+  if(action.type == "increment") {
+    return { ...currentStore, score: currentStore.score + action.value }
+  } else if(action.type == "decrement") {
+    return { ...currentStore, score: currentStore.score - action.value }
+  }
+  return currentStore;
+}
+const store = createStore(reducer);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={ store }>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
