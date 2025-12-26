@@ -25,15 +25,12 @@ const Login = () => {
 
     const handleChange = useCallback((e) => {
         const { name, value } = e.target
-        setLogin(prev => ({
-            ...prev, [name]: value
-        }))
+        setLogin(prev => ({ ...prev, [name]: value }))
         // setLogin({ ...login, [name]: value })
         console.log(login, 'user details fetched')
     }, [])
 
     const handleSubmit = (event) => {
-
         setLoading(true)
         event.preventDefault()
         alert(JSON.stringify(login, null, 2))
