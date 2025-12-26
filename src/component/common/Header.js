@@ -8,9 +8,42 @@ import { Link } from "react-router-dom"
 export const Header = () => {
 
   const [categories, setCategories] = useState([])
+  const [search, setSearch] = useState("")
+  const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
+  const searchRef = useRef(null)
 
+  const products = [
 
+    { name: 'React js', category: 'Library', read: 'reading', price: 800 },
+    { name: 'Next js', category: 'Frame work', read: 'reading', price: 900 },
+    { name: 'AWS', category: 'cloud', read: 'reading', price: 1000 },
+    { name: 'HTML', category: 'static', read: 'reading', price: 2000 },
+    { name: 'CSS', category: 'style language', read: 'reading', price: 3000 },
+    { name: 'SASS', category: 'nested style', read: 'reading', price: 4000 },
+    { name: 'JavaScript', category: 'programming language', read: 'reading', price: 4000 },
+
+  ]
+
+  const hnadleSearch = (e) => {
+    const value = e.target.value
+    setSearch(value)
+    console.log(search, 'search the item value')
+  }
+
+  const filterProducts = products.filter(item =>
+    item.name.toLowerCase().includes(search.toLowerCase())
+  )
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if(searchRef.current && !searchRef.current.contains(e.target)) {
+        setOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
 
   const fetchCategorie = async () => {
     setLoading(true)
@@ -81,10 +114,27 @@ export const Header = () => {
           </ul>
 
           {/* search-form */ }
-          <form className=' flex flex-grow-1 mx-lg-4 my-2 mg-lg-0'>
+          <form className=' flex flex-grow-1 mx-lg-4 my-2 mg-lg-0 relative' ref={ searchRef }>
             <input type="text" className=' w-full rounded-full px-2 py-2 border
-             border-slate-600 text-slate-600'
-              placeholder='search type' />
+             border-slate-600 text-slate-600 search-box'
+              placeholder='search product' value={ search } onChange={ hnadleSearch }
+              onFocus={ () => setOpen(true) } />
+
+            { open && (
+              <div className=' absolute mt-2 z-50 top-8 bg-white rounded shadow-lg w-full'>
+                { filterProducts?.length > 0 ? (
+                  filterProducts.slice(0, 20)?.map((pro, index) => (
+                    <div key={ index } className='p-2 cursor-pointer hover:bg-red-500 
+                     hover:text-white text-slate-600'>
+                      <p className='mb-0'>{ pro.name }</p>
+                    </div>
+                  ))
+                ) : (
+                  <p className='text-slate-700 p-2 text-center mb-0'>No Search Item</p>
+                ) }
+              </div>
+            ) }
+
           </form>
 
           {/* end */ }
