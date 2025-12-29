@@ -8,6 +8,7 @@ import { Link } from "react-router-dom"
 export const Header = () => {
 
   const [categories, setCategories] = useState([])
+  const [catpro, setCatPro] = useState([])
   const [search, setSearch] = useState("")
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -25,14 +26,46 @@ export const Header = () => {
 
   ]
 
+  const category = ""
+
+  useEffect(() => {
+
+    let isMounted = true
+
+    const fetchProduct = async () => {
+      setLoading(true)
+      try {
+
+        const res = await fetch('https://fakestoreapi.com/products')
+        // const res = await fetch(`https://fakestoreapi.com/products/category/${category}`)
+        const proData = await res.json()
+        setCatPro(proData)
+        console.log(proData, 'fake api data cat')
+
+      } catch(err) {
+        console.log(err)
+      } finally {
+        if(isMounted) {
+          setLoading(false)
+        }
+      }
+    }
+    fetchProduct()
+  }, [category])
+
   const hnadleSearch = (e) => {
     const value = e.target.value
     setSearch(value)
     console.log(search, 'search the item value')
   }
 
-  const filterProducts = products.filter(item =>
-    item.name.toLowerCase().includes(search.toLowerCase())
+  const handleFocus = (e) => {
+    const value = e.target.value
+    setOpen(true)
+  }
+
+  const filterProducts = catpro.filter(item =>
+    item.category.toLowerCase().includes(search.toLowerCase())
   )
 
   useEffect(() => {
@@ -118,15 +151,16 @@ export const Header = () => {
             <input type="text" className=' w-full rounded-full px-2 py-2 border
              border-slate-600 text-slate-600 search-box'
               placeholder='search product' value={ search } onChange={ hnadleSearch }
-              onFocus={ () => setOpen(true) } />
+              onFocus={ handleFocus } />
+            {/* // onFocus={ () => setOpen(true) } /> */ }
 
             { open && (
               <div className=' absolute mt-2 z-50 top-8 bg-white rounded shadow-lg w-full'>
                 { filterProducts?.length > 0 ? (
-                  filterProducts.slice(0, 20)?.map((pro, index) => (
+                  filterProducts.slice(0, 10)?.map((pro, index) => (
                     <div key={ index } className='p-2 cursor-pointer hover:bg-red-500 
                      hover:text-white text-slate-600'>
-                      <p className='mb-0'>{ pro.name }</p>
+                      <p className='mb-0'>{ pro.category }</p>
                     </div>
                   ))
                 ) : (

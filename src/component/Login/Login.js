@@ -5,6 +5,7 @@ import { Form, FormControl } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import InputLabel from '@mui/material/InputLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import Typography from '@mui/material/Typography';
 
 const Login = () => {
 
@@ -61,10 +62,20 @@ const Login = () => {
             <article className='container ms-auto'>
                 <div className='grid grid-cols-1 h-dvh'>
                     <div className=' flex items-center justify-center'>
-                        <div className='bg-white rounded-lg p-3 w-full sm:w-full md:w-1/2 lg:w-1/3 py-3'>
+                        <div className='bg-white rounded-lg p-3 w-full sm:w-full md:w-1/2 lg:w-1/3 py-3 shadow-lg'>
                             <div className=' flex items-center justify-center flex-col gap-2'>
-                                <h1 className='text-3xl text-slate-800 font-bold'>Login</h1>
-                                <p className='text-slate-800'>Welcome to the Login for the user details</p>
+                                <Typography variant='h2'>
+                                    <PersonOutlineIcon fontSize='inherit' className=' text-slate-600' />
+                                </Typography>
+
+                                <Typography variant='h4' className='mb-0 text-blue-600' fontWeight="bold">
+                                    Login
+                                </Typography>
+
+                                <Typography variant='body2' className=' text-gray-500 mb-3'>
+                                    Welcome to the Login for the user details
+                                </Typography>
+
                                 <Form className='text-left flex flex-col gap-0 w-full' onSubmit={ handleSubmit }>
                                     <div className='mb-2'>
                                         <label className='block'>
@@ -94,6 +105,7 @@ const Login = () => {
                                                 onChange={ handleChange }
                                                 error={ !!error.password }
                                                 helperText={ error.password }
+                                                className={ `rounded-full` }
                                             />
 
                                             {/* <div className='input-group'>
@@ -163,10 +175,13 @@ const Login = () => {
                                     </div> */}
 
                                     <div className='w-100'>
-                                        <button type='submit' value="submit" className=' bg-indigo-600 p-2 w-full
-                                         text-slate-50 rounded'>
-                                            Sign in
-                                        </button>
+                                        <Typography variant='button'>
+                                            <button type='submit' value="submit" className=' bg-blue-600 p-2.5 
+                                            w-full font-medium text-slate-50 rounded-full text-xl'>
+                                                Sign in
+                                            </button>
+                                        </Typography>
+
                                     </div>
 
                                 </Form>
