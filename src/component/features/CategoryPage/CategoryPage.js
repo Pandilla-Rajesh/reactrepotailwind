@@ -36,7 +36,7 @@ const CategoryPage = () => {
     }, [slug])
 
     return (
-        <section className=' bg-blue-950 p-4'>
+        <section className='p-4'>
             <article className='container-full ms-auto'>
                 <Typography variant='h4' className='text-center mb-4 uppercase'>
                     { slug } Products
