@@ -16,6 +16,7 @@ const Test = lazy(() => import("./component/features/test/Test"))
 const Practise = lazy(() => import("./component/features/practise/Practise"))
 const Parent = lazy(() => import("./component/features/Parent/Parent"))
 const Curency = lazy(() => import("./component/features/Courency/Courency"))
+const CategoryPage = lazy(() => import('./component/features/CategoryPage/CategoryPage'))
 
 function Approutes() {
 
@@ -35,7 +36,8 @@ function Approutes() {
                 { path: "test", element: (<Suspense fallback={ <Loder /> }><Test /> </Suspense>) },
                 { path: "practise", element: (<Suspense fallback={ <Loder /> }><Practise /></Suspense>) },
                 { path: "parent", element: (<Suspense fallback={ <Loder /> }><Parent /></Suspense>) },
-                { path: "curency", element: (<Suspense fallback={ <Loder /> }><Curency /></Suspense>) }
+                { path: "curency", element: (<Suspense fallback={ <Loder /> }><Curency /></Suspense>) },
+                { path: '/category/:slug', element: (<Suspense fallback={ <div>...Loading</div> }><CategoryPage /></Suspense>) }
             ]
         }
     ]);
