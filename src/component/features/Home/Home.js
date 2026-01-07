@@ -1,14 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import axios from 'axios'
 import { Button, Col, Container, Form, FormControl, FormGroup, FormLabel, Row } from 'react-bootstrap';
 import useFetch from '../../../CustomAPI/CustomApi';
+import ReUseButton from '../../CustomServices/ReUseButton/ReUseButton';
+import ModalReUse from '../../CustomServices/ModalReUse/ModalReUse';
+import HeroSlider from '../../HeroSlider/HeroSlider';
 
 const baseURL = "https://jsonplaceholder.typicode.com/posts";
 
 
 export const Home = () => {
+
   const [post, setPost] = useState();
   const [loading, setLoading] = useState(false)
+
+  const [show, setShow] = useState(false)
+
+  const handleShow = () => {
+    setShow(true)
+  }
+
+  const handleCart = useCallback(async (event) => {
+    event.preventDefault()
+    console.log('event trigerd')
+  }, [])
 
   useEffect(() => {
     setLoading(true)
@@ -29,24 +44,68 @@ export const Home = () => {
   )
   if(error) return <p>Error</p>
 
+
+
   return (
-    <section className='mt-10'>
-      <div className='container ms-auto'>
+    <section className='0'>
+      <HeroSlider />
+      {/* <div className='container ms-auto'>
         <div className=' rounded'>
           <img src="https://nest-frontend-v6.vercel.app/assets/imgs/slider/slider-2.png" alt="" />
         </div>
-      </div>
+      </div> */}
       <div className=" container-fluid">
-        <div className='grid grid-cols-1 lg:grid-cols-6 gap-3 my-4'>
+        <div className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-3 my-4'>
           { loading ? (
             <p>...Loading</p>
           ) : (
             data?.length > 0 ? (
-              data?.slice(0, 6)?.map((pro, index) => (
+              data?.slice(0, 16)?.map((pro, index) => (
                 <div className='bg-gray-50 rounded shadow-lg p-3' key={ index }>
+                  <div className='info-vertical-card'>
+                    <div className='info-pro-card'>
+                      <div className='info-card-top'>
+                        <div className='mb-2'>
+                          <img src={ pro.image } alt={ pro.image } loading='lazy'
+                            srcSet={ `
+                            ${pro.image} 480w
+                            ${pro.image} 768w
+                            ${pro.image} 1200w
+                          `}
+                            sizes="(max-width: 768px) 100vw, 33vw" />
+                        </div>
+                        <h2 className='text-slate-800 text-2xl font-semibold'>{ pro.category }</h2>
+                        <div>
+                          <p className='text-sm text-slate-900'>{ pro.description }</p>
+                        </div>
+                      </div>
 
-                  <img src={ pro.image } alt={ pro.image } loading='lazy' />
-                  <h2 className='text-slate-800 text-sm'>{ pro.title }</h2>
+                      <div className='info-card-bottom'>
+                        <div className=' flex align-items-center justify-content-between'>
+                          <ReUseButton variant='primary' label="Add to Cart" onClick={ handleCart } />
+                          <ReUseButton variant='danger' label="Delete" />
+                        </div>
+
+                        <div className='d-flex align-items-center justify-content-center'>
+                          <Button variant='success' onClick={ handleShow }>
+                            Book Product
+                          </Button>
+                        </div>
+
+                        <div>
+                          <ModalReUse show={ show } handleClose={ () => setShow(false) }
+                            title="Order"
+                            footer={ <Button variant='secondary' onClick={ () => setShow(false) }>
+                              Close
+                            </Button>
+                            }>
+                            <p className='text-slate-800'>This modal is opened from the Home component.</p>
+                          </ModalReUse>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
                 </div>
               ))
             ) : (

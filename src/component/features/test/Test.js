@@ -1,208 +1,168 @@
-import React, { useEffect, useState } from "react";
-import { Button, Container } from "react-bootstrap";
-import Parent from "../Parent/Parent";
+import React, { useCallback, useEffect, useState } from 'react'
+import { Button, Card, Col, Container, Row } from 'react-bootstrap'
+import CardHeader from 'react-bootstrap/esm/CardHeader'
 
-const Test = () => {
-  const [timer, setTimer] = useState(new Date().toLocaleTimeString());
-  const btnobj = [
-    {
-      id: 1,
-      btnName: "Start",
-      action: "startHandle",
-      styleName : "btn-success"
-      
-    },
-    {
-      id: 2,
-      btnName: "Pause",
-      action: "pauseHandle",
-      styleName : "btn-dark"
-    },
-    {
-      id: 3,
-      btnName: "Reset",
-      action: "resetHandle",
-      styleName : "btn-danger"
-    },
-  ];
-  const [invalidId, setinvalidId] = useState(null);
+function ReactMainTopics() {
 
-  const handleAct = (act) => {
-    if (act === "startHandle") {
-      let id = setInterval(() => {
-        setTimer(new Date().toLocaleTimeString());
-      }, 1000);
-      setinvalidId(id);
-    } else if (act === "pauseHandle") {
-      clearInterval(invalidId);
-    } else if (act === "resetHandle") {
-      clearInterval(invalidId);
-      setTimer(new Date().toLocaleTimeString());
-    }
-  };
-
-  const [text, setText]=useState()
-  const handleEvent=(e)=>{
-    if(e.target.classList, "list-item"){
-      setText(e.target.textContent)
-    }
-  }
-
-  const handleClick = () =>{
-    alert('click the button')
-    console.log('Button was clicked')
-  }
-
-  // Callback-function //
-  const names = ["Rajesh", "Ushasri", "Adhya", "Arjun"]
-  const namesAll = (animate) =>{
-    setTimeout(() => {
-      animate(names[0]);
-      setTimeout(() => {
-        animate(names[1])
-        setTimeout(() => {
-          animate(names[2])
-          setTimeout(() => {
-            animate(names[3])
-          }, 4000);
-        }, 3000);
-      }, 1000);
-    }, 1000);
-  }  
-
-  const animate = (name) =>{
-    console.log("animating", name)
-  }
-
-  namesAll(animate)
-
-  // end //
-
-  // promises //
-
-  // const emails = ["gmail", "yahoo", "outlook"]
-  // const animateOne = (fruit) =>{
-  //   return new Promise((res, rej)=>{
-  //     setTimeout(() => {
-  //       emailnames(fruit)
-  //       res(true)
-  //     }, 1000);
-  //   })
-  // }
-
-  // const emailsAll = (emailnames) =>{
-  //   animateOne(emails[0], emailnames)
-  //   .then(()=>animateOne(emails[1], emailnames))
-  //   .then(()=>animateOne(emails[2]), emailnames)
-  //   .catch((err)=> console.log(err))
-  // }
-
-  // const animateemail = (fruit) =>{
-  //   console.log("emails animate", fruit)
-  // }
-
-  // emailsAll(animateemail)
- 
-const handleDeleg = (event) =>{
-  const target = event.target
-  if(target.matches('li')){
-    console.log('list item was cliked')
-    setText(event.target.textContent)
-  }
-}
+  // time-interval-function //
+  const [time, setTime] = useState(0)
+  const [currentdate, setCurrentDate] = useState(new Date())
+  const [isruning, setIsRuning] = useState(false)
+  const [loading, setLoading] = useState(false)
 
 
-  // end //
+  // boolean-values //
 
-  const eventPre = (e) =>{
-    e.preventDefault()
-    console.log("click the event prevent default")
-  }
-
-  const letters = ['a', 'b', 'c']
-  const numbersn = [1,2,3]
-  const newnum = letters.concat(numbersn).join('')
-  console.log(newnum, "line125")
-
-  const [name, setName] = useState("Rajesh")
   const [show, setShow] = useState(false)
-  const clickMe=()=>{
+
+  const handleShow = () => {
     setShow(!show)
   }
 
-  const isLoggedIn = false
+  const content = `
   
+  1. Some quick example text to build on the card 
+  title and make up the bulk of the card's content.
+  2. Some quick example text to build on the card 
+  title and make up the bulk of the card's content.
+  
+  `
 
-  // logical or||
-
-  const [nshow, setnShow] = useState(false)
-  const [isshow, setIsShow] = useState(true)
+  // end //
 
 
- return (
-    <Container>
-    <div className="col-sm-3 offset-sm-4 mt-5">
-      <div>
-        <h1>{timer}</h1>
-      </div>
-      {btnobj.map((el) => (
-        <Button
-          key={el.id}
-          onClick={() => handleAct(el.action)}
-          className={`btn me-3 mt-5 ${el.styleName}`}>
-          {el.btnName}
-        </Button>
-      ))}
-    </div>
-    {/* <div><Parent/></div> */}
 
-      <div>
-        <h2>React Event Delegation</h2>
-        <h1>{text}</h1>
-        <ul onClick={handleEvent}>
-          <li className="list-item">Home</li>
-          <li className="list-item">About</li>
-          <li className="list-item">Services</li>
-        </ul>
-      </div>
+  // handlers //
 
-      <div>
-        <h2>React Event Delegation</h2>
-        <h1>{text}</h1>
-        <ul onClick={handleDeleg}>
-          <li className="list-item">name1</li>
-          <li className="list-item">name2</li>
-          <li className="list-item">name3</li>
-        </ul>
-      </div>
+  const handleStart = useCallback(() => {
+    setIsRuning(true)
+  }, [])
 
-      <div>
-        <Button onClick={handleClick}>Click me</Button>
-      </div>
+  const handleStop = useCallback(() => {
+    setIsRuning(false)
+  })
 
-      <div>
-        <h2>Update the name {name}</h2>
-        <button onClick={()=>setName("Pandilla")}>Update state value</button>
-      </div>
+  const handleReset = useCallback(() => {
+    setTime(0)
+    setIsRuning(false)
+  })
 
-      <div>{show && <h2>Logical operator</h2>}
-      <button onClick={()=>clickMe("rajesh pandilla")}>Click me</button>
-      </div>
+  // with-out-useeffect //
 
-      <div>
-        {isLoggedIn ? "back" : "please loged in first"}
-      </div>
+  const runTime = async () => {
+    setLoading(true)
+    try {
 
-      <div>
-        {(nshow || isshow) ? <p>logical operators</p>:'rajesh'}
-      </div>
+      let timeout;
+      if(isruning) {
+        timeout = setTimeout(() => {
+          setTime((value) => value + 1)
+          setCurrentDate(new Date())
+        }, 100)
+      }
 
-      <div>
-        <a href="https://example.com" onClick={eventPre}>click me</a>
-      </div>
+      return () => clearTimeout(timeout)
 
-    </Container>
-  );
-};
+    } catch(err) {
+      console.log(err)
+    } finally {
+      setLoading(false)
+    }
+  }
 
-export default Test;
+  useEffect(() => {
+    runTime()
+  }, [isruning, time])
+
+  // with--useEffect //
+
+  useEffect(() => {
+    let timeInterval;
+    if(isruning) {
+      timeInterval = setTimeout(() => {
+        setTime((prev) => prev + 1)
+        setCurrentDate(new Date())
+      }, 100)
+    }
+    return () => clearTimeout(timeInterval)
+  }, [isruning, time])
+
+  // end //
+
+  // end //
+
+  // end //
+
+  return (
+
+    <section className='info-suggestion-wrapper'>
+      <Container>
+        <Row className=' align-items-center justify-content-center g-2'>
+          <Col lg={ 12 }>
+            <div className='info-head'>
+              <h2>Welcome to the React Main Topics</h2>
+            </div>
+          </Col>
+
+          <Col lg={ 4 }>
+            <Card>
+              <CardHeader>
+                <Card.Title className='text-center'>
+                  Timer Interview Function
+                </Card.Title>
+              </CardHeader>
+              <Card.Body>
+                <Card.Text>
+                  Some quick example text to build on the card title and make up the
+                  bulk of the card's content.
+                </Card.Text>
+                <div className=' flex items-center justify-center gap-2'>
+                  { loading ? (
+                    <p>...Loading</p>
+                  ) : (
+                    <>
+                      <h5 className=' text-blue-700'>Time: { time }</h5>
+                      <hr className=' bg-slate-500 h-2' />
+                      <h5 className='text-green-700'>Date: { currentdate.toLocaleString() }</h5>
+                    </>
+                  ) }
+
+                </div>
+                <div className=' d-flex align-content-center justify-content-center gap-2'>
+                  <Button onClick={ handleStart }>Start</Button>
+                  <Button onClick={ handleStop } variant='danger'>Stop</Button>
+                  <Button onClick={ handleReset } variant='secondary'>Reset</Button>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+
+          <Col lg={ 4 }>
+            <Card>
+              <CardHeader>
+                <Card.Title className='text-center'>
+                  Boolean Values
+                </Card.Title>
+              </CardHeader>
+              <Card.Body>
+                <Card.Text
+                  className={ `overflow-hidden transition-all ease-in-out whitespace-pre-line
+               ${show ? 'max-h-[200px]' : 'max-h-[60px]'}` }>
+                  { content }
+                </Card.Text>
+                <Button onClick={ handleShow }>
+                  { show ? 'show Less' : 'Show more' }
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
+
+        </Row>
+      </Container>
+    </section>
+
+  )
+
+}
+
+export default ReactMainTopics

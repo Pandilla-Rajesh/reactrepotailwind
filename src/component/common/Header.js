@@ -193,7 +193,7 @@ export const Header = () => {
             </li>
 
             <li className='nav-item'>
-              <Link className="nav-link" to="/Test">Test</Link>
+              <Link className="nav-link" to="/Test">React Topics Main</Link>
             </li>
             {/* <li className='nav-item'>
               <Link className="nav-link" to="/Practise">Practise</Link>
